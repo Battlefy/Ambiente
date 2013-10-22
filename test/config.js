@@ -6,7 +6,10 @@ var path = require('path');
 var Config = require('../lib/config');
 
 // constants
-var TEST_CONFIG_PATH = path.resolve(__dirname, 'fixtures/test-config.json');
+var TEST_CONFIG_PATH = path.resolve(
+  __dirname,
+  'fixtures/app/test.json'
+);
 
 
 describe('config', function() {

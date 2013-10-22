@@ -18,5 +18,8 @@
   "devDependencies": {
     "should": "~2.0.2",
     "mocha": "~1.13.0"
+  },
+  "dependencies": {
+    "primitive": "0.0.5"
   }
 }
