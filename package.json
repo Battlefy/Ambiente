@@ -1,0 +1,22 @@
+{
+  "name": "ambiente",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./lib/ambiente",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/RobertWHurst/Ambiente.git"
+  },
+  "author": "Battlefy <info@battlefy.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RobertWHurst/Ambiente/issues"
+  },
+  "devDependencies": {
+    "should": "~2.0.2",
+    "mocha": "~1.13.0"
+  }
+}
