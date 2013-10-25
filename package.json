@@ -20,6 +20,7 @@
     "mocha": "~1.13.0"
   },
   "dependencies": {
-    "primitive": "0.0.5"
+    "primitive": "0.0.5",
+    "JSONStream": "~0.7.1"
   }
 }
