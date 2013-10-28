@@ -31,9 +31,23 @@ describe('configLoader', function() {
     new ConfigLoader(CONFIG_PATH, function(err, config) {
       if(err) { throw err; }
       config.test.should.be.OK;
-      config.test.name.should.equal('prod');
+      config.test.file.should.equal('dev');
+      config.namespace.should.be.OK;
+      config.namespace.subTest.should.be.OK;
+      config.namespace.subTest.sub.should.equal('val');
+    });
+  });
+
+  it('sets the config namespaces on its instance', function() {
+    new ConfigLoader(CONFIG_PATH, DEFAULTS_PATH, function(err, config) {
+      if(err) { throw err; }
+      config.test.should.be.OK;
+      config.test.name.should.equal('app');
+      config.test.file.should.equal('dev');
       config.test.a.should.OK;
       config.test.a.foo.should.equal('bar');
+      config.test.b.should.OK;
+      config.test.b.baz.should.equal('ack');
       config.namespace.should.be.OK;
       config.namespace.subTest.should.be.OK;
       config.namespace.subTest.sub.should.equal('val');

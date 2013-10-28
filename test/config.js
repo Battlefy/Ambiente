@@ -19,9 +19,14 @@ describe('config', function() {
   });
 
   it('accepts a path and callback it calls when ready', function(done) {
-    var config = new Config(TEST_CONFIG_PATH, function(err, _config) {
+    new Config(TEST_CONFIG_PATH, function(err, config) {
       if(err) { throw err; }
-      config.should.eql(_config);
+      config.should.be.OK;
+      config.name.should.equal('app');
+      config.a.should.be.OK;
+      config.a.foo.should.equal('bar');
+      config.b.should.be.OK;
+      config.b.baz.should.equal('ack');
       done();
     });
   });

@@ -1,7 +1,7 @@
 {
   "name": "app",
   "a": {
-    "foo": "invalid"
+    "foo": "bar"
   },
   "b": {
     "baz": "ack"

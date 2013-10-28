@@ -1,6 +1,3 @@
 {
-  "name": "prod",
-  "a": {
-    "foo": "bar"
-  }
+  "file": "dev"
 }
