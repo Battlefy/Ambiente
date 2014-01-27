@@ -6,62 +6,40 @@ var path = require('path');
 var Config = require('../lib/config');
 
 // constants
-var TEST_CONFIG_PATH = path.resolve(
-  __dirname,
-  'fixtures/app/test.json'
-);
-
+var CONFIG_PATH = path.resolve(__dirname, './fixtures/dev');
+var DEFAULTS_PATH = path.resolve(__dirname, './fixtures/app');
 
 describe('config', function() {
 
-  it('accepts a path', function() {
-    new Config(TEST_CONFIG_PATH);
+  it('accepts a config path', function() {
+    var config = new Config(CONFIG_PATH);
   });
 
-  it('accepts a path and callback it calls when ready', function(done) {
-    new Config(TEST_CONFIG_PATH, function(err, config) {
-      if(err) { throw err; }
-      config.should.be.OK;
-      config.name.should.equal('app');
-      config.a.should.be.OK;
-      config.a.foo.should.equal('bar');
-      config.b.should.be.OK;
-      config.b.baz.should.equal('ack');
-      done();
-    });
+  it('accepts a config path and defaults path', function() {
+    var config = new Config(CONFIG_PATH, DEFAULTS_PATH);
   });
 
-  it('emits an event for root each key in the config', function(done) {
-
-    var _config = require(TEST_CONFIG_PATH);
-
-    var config = new Config(TEST_CONFIG_PATH);
-    
-    config.on('a', function(a) {
-      a.should.eql(_config.a);
-      done();
-    });
-
+  it('sets the config namespaces on its instance', function() {
+    var config = new Config(CONFIG_PATH);
+    config.test.should.be.OK;
+    config.test.file.should.equal('dev');
+    config.namespace.should.be.OK;
+    config.namespace.subTest.should.be.OK;
+    config.namespace.subTest.sub.should.equal('val');
   });
 
-  it('applies all of the config data to itself upon a ready event', function() {
-
-    var _config = require(TEST_CONFIG_PATH);
-    var config = new Config(TEST_CONFIG_PATH);
-    config.on('ready', function(config) {
-      config.a.should.eql(_config.a);
-      config.b.should.eql(_config.b);
-    });
-
+  it('sets the config namespaces on its instance', function() {
+    var config = new Config(CONFIG_PATH, DEFAULTS_PATH);
+    config.test.should.be.OK;
+    config.test.name.should.equal('app');
+    config.test.file.should.equal('dev');
+    config.test.a.should.OK;
+    config.test.a.foo.should.equal('bar');
+    config.test.b.should.OK;
+    config.test.b.baz.should.equal('ack');
+    config.namespace.should.be.OK;
+    config.namespace.subTest.should.be.OK;
+    config.namespace.subTest.sub.should.equal('val');
   });
 
-  it('applies all of the config data to itself upon the callback', function() {
-
-    var _config = require(TEST_CONFIG_PATH);
-    new Config(TEST_CONFIG_PATH, function(err, config) {
-      config.a.should.eql(_config.a);
-      config.b.should.eql(_config.b);
-    });
-
-  });
 });
